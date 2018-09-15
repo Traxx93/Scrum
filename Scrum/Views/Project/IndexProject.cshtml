@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Scrum.Models.ProjectViewModel.ProjectViewModel>
+
+@{
+    ViewBag.Title = "IndexProject";
+}
+
+<h2>All projects</h2>
+
+
+
+<div class="row project-row-color col-12">
+    @foreach (var item in Model)
+    {
+        <div class="card project-card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.ActionLink("" + @Html.DisplayFor(modelItem => item.ProjectName) + "", "IndexSprintsForProject", "Sprint", new { projectID = item.ProjectID }, null)</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Owner)</h6>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+
+            </div>
+        </div>
+    }
+        <div class="card project-card create-project">
+            <div class="card-body">
+                <span>+</span>
+            </div>
+        </div>
+</div>
+
+

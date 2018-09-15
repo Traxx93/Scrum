@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Scrum.Models.WorkItemViewModel.WorkItemViewModel>
+
+@{
+    ViewBag.Title = "IndexWorkItem";
+}
+
+<h2>All Tasks</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table table-dark">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkItemID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            User Name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            Options
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkItemID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @if (item.UserID != null)
+                {
+                    @Html.DisplayFor(modelItem => item.UserFirstName) @Html.DisplayFor(modelItem => item.UserLastName)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditWorkItem", new { id = item.WorkItemID }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.WorkItemID }, new { @class = "btn btn-warning" }) |
+                <a class="btn btn-dark">Take</a>
+            </td>
+
+
+        </tr>
+    }
+
+
+
